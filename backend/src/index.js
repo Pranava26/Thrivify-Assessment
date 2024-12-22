@@ -1,13 +1,13 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const db = require('./models');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
+import express from 'express';
+import dotenv from 'dotenv';
+import db from './models/index.js'
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
-const path = require('path')
+import path from 'path';
 
-const authRoutes = require('./routes/auth.route');
-const habitsRoutes = require('./routes/habits.route');
+import authRoutes from './routes/auth.route.js'
+import habitsRoutes from './routes/habits.route.js'
 
 dotenv.config();
 const app = express();

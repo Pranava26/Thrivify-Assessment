@@ -1,6 +1,8 @@
-const { Habit } = require('../models');
+import db from '../models/index.js';
 
-const createHabit = async (req, res) => {
+const { Habit } = db;
+
+export const createHabit = async (req, res) => {
     const { habit_title, frequency, status } = req.body;
     const user_id = req.user.user_id;
 
@@ -28,7 +30,7 @@ const createHabit = async (req, res) => {
     }
 }
 
-const getUserHabits = async (req, res) => {
+export const getUserHabits = async (req, res) => {
     try {
         const user_id = req.user.user_id;
         const habits = await Habit.findAll({
@@ -44,7 +46,7 @@ const getUserHabits = async (req, res) => {
     }
 }
 
-const updateHabit = async (req, res) => {
+export const updateHabit = async (req, res) => {
     const { id } = req.params;
 
     const { habit_title, frequency, status, start_date } = req.body;
@@ -75,7 +77,7 @@ const updateHabit = async (req, res) => {
     }
 }
 
-const deleteHabit = async (req, res) => {
+export const deleteHabit = async (req, res) => {
     const { id } = req.params;
 
     try {
@@ -97,11 +99,4 @@ const deleteHabit = async (req, res) => {
         console.log("Error in deleteHabit controller", error.message);
         return res.status(500).json({ message: "Internal Server Error" });
     }
-}
-
-module.exports = {
-    createHabit,
-    getUserHabits,
-    updateHabit,
-    deleteHabit
 }

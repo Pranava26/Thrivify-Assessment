@@ -1,7 +1,9 @@
-const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+import jwt from 'jsonwebtoken';
+import db from '../models/index.js';
 
-const protectRoute = async (req, res, next) => {
+const { User } = db;
+
+export const protectRoute = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
 
@@ -27,16 +29,11 @@ const protectRoute = async (req, res, next) => {
     }
 }
 
-const checkAuth = (req, res) => {
+export const checkAuth = (req, res) => {
     try {
         res.status(200).json(req.user);
     } catch (error) {
         console.log('Error in checkAuth controller', error.message);
         res.status(500).json({ message: 'Internal server error' });
     }
-}
-
-module.exports = {
-    protectRoute,
-    checkAuth
 }

@@ -1,9 +1,11 @@
-const { User } = require('../models');
-const bcrypt = require('bcryptjs');
-const { generateToken } = require('../lib/utils');
+import db from '../models/index.js';
+import bcrypt from 'bcryptjs'
+import { generateToken } from '../lib/utils.js'
+
+const { User } = db;
 
 //signup controller
-const signup = async (req, res) => {
+export const signup = async (req, res) => {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
@@ -43,7 +45,7 @@ const signup = async (req, res) => {
 }
 
 //login controller
-const login = async (req, res) => {
+export const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -71,7 +73,7 @@ const login = async (req, res) => {
     }
 }
 
-const logout = async (req, res) => {
+export const logout = async (req, res) => {
     try {
         res.cookie("jwt", "", { maxAge: 0 });
         res.status(200).json({ message: "Logged out successfully" });
@@ -81,7 +83,7 @@ const logout = async (req, res) => {
     }
 }
 
-const updateProfile = async (req, res) => {
+export const updateProfile = async (req, res) => {
     const { name, password } = req.body;
     const user_id = req.user.user_id;
 
@@ -91,7 +93,7 @@ const updateProfile = async (req, res) => {
 
     try {
         const user = await User.findOne({
-            where: {user_id}
+            where: { user_id }
         });
         if (!user) {
             return res.status(404).json({ message: "User not found" });
@@ -113,11 +115,4 @@ const updateProfile = async (req, res) => {
         console.log('Error in updateProfile controller', error.message);
         res.status(500).json({ message: 'Internal Server Error' });
     }
-}
-
-module.exports = {
-    signup,
-    login,
-    logout,
-    updateProfile
 }
