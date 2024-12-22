@@ -1,6 +1,4 @@
-import db from '../models/index.js';
-
-const { Habit } = db;
+import Habit from "../models/habits.model.js";
 
 export const createHabit = async (req, res) => {
     const { habit_title, frequency, status } = req.body;

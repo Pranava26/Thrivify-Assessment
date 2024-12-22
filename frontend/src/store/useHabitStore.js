@@ -3,9 +3,9 @@ import { axiosInstance } from '../lib/axios.js';
 import toast from 'react-hot-toast';
 
 export const useHabitStore = create((set, get) => ({
-    userHabits: [], // Stores the list of habits
-    isLoadingHabits: false, // Tracks the loading state for fetching habits
-    isManagingHabit: false, // Tracks the loading state for add/update/delete operations
+    userHabits: [],
+    isLoadingHabits: false,
+    isManagingHabit: false,
 
     // Fetch all habits for the authenticated user
     fetchHabits: async () => {

@@ -1,8 +1,6 @@
-import db from '../models/index.js';
 import bcrypt from 'bcryptjs'
 import { generateToken } from '../lib/utils.js'
-
-const { User } = db;
+import User from '../models/users.model.js';
 
 //signup controller
 export const signup = async (req, res) => {
