@@ -25,7 +25,7 @@ const HomePage = () => {
   const fetchHabitSuggestions = async () => {
     setIsLoadingSuggestions(true);
     try {
-      const res = await axios.get('http://localhost:5000/generate-habit-suggestions');
+      const res = await axios.get('https://thrivify-assessment.onrender.com/generate-habit-suggestions');
       console.log(res);
       
       setSuggestions(res.data);
