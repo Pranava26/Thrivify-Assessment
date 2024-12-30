@@ -25,9 +25,9 @@ const HomePage = () => {
   const fetchHabitSuggestions = async () => {
     setIsLoadingSuggestions(true);
     try {
-      const res = await axios.get('http://localhost:5000/generate-habit-suggestions');
+      const res = await axios.get('https://flask-backend-u2mr.onrender.com/generate-habit-suggestions');
       console.log(res);
-      
+
       setSuggestions(res.data);
     } catch (error) {
       console.log('Error fetching habit suggestions:', error);
